@@ -85,7 +85,7 @@ class IcebergCatalog(Catalog):
                 raise NotImplementedError(f"Unsupported partition transform: {pf.transform}")
 
             source_field = iceberg_schema.find_field(pf.field.name)
-            field_id = max(1000, len(iceberg_schema.fields)) + idx
+            field_id = len(iceberg_schema.fields) + idx
             name = f"__pyiceberg_partition_field_{pf.field.name}_{field_id}"
             iceberg_partition_fields.append(
                 PyIcebergPartitionField(
